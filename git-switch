@@ -1,0 +1,29 @@
+#! /bin/bash
+
+
+if [ $# -eq 0 ] || [ "$1" == "master" ]; then
+    git checkout master
+else
+    BRANCH=($(git branch -r | grep "$1" | grep -v "HEAD" | cut -c 10-))
+    NUM_BRANCHES=${#BRANCH[@]}
+    if [ $NUM_BRANCHES -eq 0 ]; then
+        echo "No branch matches that keyword. Not switching branches."
+    elif [ $NUM_BRANCHES -gt 1 ]; then
+        if [ $NUM_BRANCHES -lt 10 ]; then
+            echo "Select a branch to switch to:"
+            BRANCH+=("Don't switch")
+            select opt in "${BRANCH[@]}"; do
+                if [ "$opt" == "Don't switch" ]; then
+                    echo "Not switching branches."
+                else
+                    git checkout $opt
+                fi
+                break
+            done
+        else
+            echo "Too many branches match ($NUM_BRANCHES). Please use a more specific string."
+        fi
+    else
+        git checkout ${BRANCH[0]}
+    fi
+fi
