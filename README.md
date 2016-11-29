@@ -3,7 +3,8 @@ Git util that checks out branches based on grep keywords.
 
 ## Installing
 
-`sudo make install` in the downloaded folder with the makefile. That's it!
+1. Download/Clone the repo.
+2. `sudo make install` in the downloaded folder with the makefile.
 
 ## How it works
 
