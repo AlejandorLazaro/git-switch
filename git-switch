@@ -4,7 +4,7 @@
 if [ $# -eq 0 ] || [ "$1" == "master" ]; then
     git checkout master
 else
-    BRANCH=($(git branch -r | grep "$1" | grep -v "HEAD" | cut -c 10-))
+    BRANCH=($(git branch -r | grep "$1" | grep -v "origin/HEAD -> origin/master" | cut -c 10-))
     NUM_BRANCHES=${#BRANCH[@]}
     if [ $NUM_BRANCHES -eq 0 ]; then
         echo "No branch matches that keyword. Not switching branches."
