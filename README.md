@@ -1,6 +1,10 @@
 # git-switch
 Git util that checks out branches based on grep keywords.
 
+## Installing
+
+`sudo make install` in the downloaded folder with the makefile. That's it!
+
 ## How it works
 
 Just `git switch some_string` and it will look for remote branches that contain `some_string`.
